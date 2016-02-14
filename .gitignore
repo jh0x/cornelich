@@ -1,0 +1,23 @@
+# Backup files created by some editors
+*~
+
+# Some typical output from the compiler
+*.a
+*.o
+*.dylib
+*.so
+
+# Generated code
+generated-sources
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+build/
+*.user
+
+# Intellij
+.idea
+
+# Gradle for the java sample
+.gradle
