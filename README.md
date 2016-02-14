@@ -1,27 +1,4 @@
-# Table of Contents
-
-- [Example](#example)
-    - [Writing](#writing)
-    - [Reading](#reading)
-- [Brief](#brief)
-- [Requirements and dependencies](#requirements-and-dependencies)
-- [Disclaimer](#disclaimer)
-- [Examples](#examples)
-    - [Writing example](#writing-example)
-        - [`t1` creates an excerpt with capacity `x`](#t1-creates-an-excerpt-with-capacity-x)
-        - [`t1` writes some data into the excerpt](#t1-writes-some-data-into-the-excerpt)
-        - [`t2` creates an excerpt with capacity `y` and writes `y1 <= y` bytes of data](#t2-creates-an-excerpt)
-        - [`t1` and `t2` finish the excerpt at *'the same time'*](#t1-and-t2-finish)
-            - [`t1` and `t2` try to append `idx1` and `idx2` to the index file](#t1-t2-append-idx)
-        - [Index file](#index-file)
-        - [Chronicle object](#chronicle-object)
-    - [Reading example](#reading-example)
-        - [Empty chronicle](#empty-chronicle)
-        - [Chronicle with some data](#chronicle-with-some-data)
-
-
-
-----------
+[TOC]
 
 # Cornelich
 
@@ -120,7 +97,7 @@ Initial conditions:
      -  `t1` with `tid1=4660=0x1234`
      -  `t2` with `tid2=43981=0xABCD`
 
-#### <a name="t1-creates-an-excerpt-with-capacity-x"></a>`t1` creates an excerpt with capacity `x`
+#### `t1` creates an excerpt with capacity `x`
 
 1. Evaluate the current cycle number - in our example it is the number of days since epoch: `20160116` -> `16816=0x41b0`
 2. If there is no data region linked with the current appender:
@@ -130,19 +107,19 @@ Initial conditions:
 
 ![T1 maps a region and creates and excerpt](doc/img/1_t1_maps_region.png?raw=true "T1 maps a region and creates and excerpt")
 
-#### <a name="t1-writes-some-data-into-the-excerpt"></a>`t1` writes some data into the excerpt
+#### `t1` writes some data into the excerpt
 
 Let's say `t1` writes `x1 <= x` bytes of data
 
 ![T1 writes some data](doc/img/2_t1_writes_some_data.png?raw=true "T1 writes some data")
 
-#### <a name="t2-creates-an-excerpt"></a>`t2` creates an excerpt with capacity `y` and writes `y1 <= y` bytes of data
+#### `t2` creates an excerpt with capacity `y` and writes `y1 <= y` bytes of data
 
 The steps are identical to those described above (the only difference is in naming of the data files `/path/20160116/data-42981-XXXX`)
 
 ![T2 creates and excerpt and writes some data](doc/img/3_t2_writes_some_data.png?raw=true "T2 creates and excerpt and writes some data")
 
-#### <a name="t1-and-t2-finish"></a>`t1` and `t2` finish the excerpt at *'the same time'*
+#### `t1` and `t2` finish the excerpt at *'the same time'*
 
 1. `t1` writes the total length (bitwise NOT) of the written data (`y1`) into the reserved first four bytes of the excerpt (`memory_order_release`).
 1. `t1` evaluates the `idx1` value that should get appended to the index file. `idx1=(thread_id << X) | data_offset`
@@ -153,7 +130,7 @@ The steps are identical to those described above (the only difference is in nami
 
 ![T1 and T2 writes length](doc/img/4_t1t2_write_len.png?raw=true "T1 and T2 writes length")
 
-##### <a name="t1-t2-append-idx"></a>`t1` and `t2` try to append `idx1` and `idx2` to the index file
+##### `t1` and `t2` try to append `idx1` and `idx2` to the index file
 
 TODO: How the index file gets mapped
 
