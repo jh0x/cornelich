@@ -15,7 +15,7 @@ namespace chr = cornelich;
 
 int main()
 {
-    chr::vanilla_chronicle_settings settings("/tmp/ëxample");
+    chr::vanilla_chronicle_settings settings("/tmp/example");
     chr::vanilla_chronicle chronicle(settings);
 
     auto appender = chronicle.create_appender();
@@ -39,7 +39,7 @@ namespace chr = cornelich;
 
 int main()
 {
-    chr::vanilla_chronicle_settings settings("/tmp/ëxample");
+    chr::vanilla_chronicle_settings settings("/tmp/example");
     chr::vanilla_chronicle chronicle(settings);
 
     auto tailer = chronicle.create_tailer();
@@ -197,6 +197,6 @@ Let's use the chronicle from the writing example:
         - `data_file_number=0x00000000`
         - `data_offset=0x00000004`
     - `data-4660-0` gets mapped into memory
-    - Excerpt length (bitwise NOT) gets read (`memory_order_acquire`) from `data_offset-4)
+    - Excerpt length (bitwise NOT) gets read (`memory_order_acquire`) from `data_offset-4`)
     - The excerpt is ready to be used
 

@@ -26,7 +26,7 @@ namespace chr = cornelich;
 
 int main()
 {
-    chr::vanilla_chronicle_settings settings("/tmp/ëxample");
+    chr::vanilla_chronicle_settings settings("/tmp/example");
     chr::vanilla_chronicle chronicle(settings);
 
     auto tailer = chronicle.create_tailer();
