@@ -84,6 +84,9 @@ An experimental C++11 library for reading and writing [OpenHFT](https://github.c
 - Implementation uses some Linux specific functions. As it is now it will not compile under VS.
 - No guarantees given. There may be bugs. There might be incompatibilities with the Java version.
 
+## Limitations
+
+- issue #1 - Tailer might miss entries written by a slow writer when multiple writers are present. Same behaviour [can be observed](https://github.com/OpenHFT/Chronicle-Queue/issues/245) in the Java VanillaChronicle. Sample code: [C++](cornelich_test/cornelich_read_write_cycle.cpp), [Java](cornelich_sample/java/src/test/java/ReadWriteCycle.java)
 
 ## Example
 
@@ -199,4 +202,3 @@ Let's use the chronicle from the writing example:
     - `data-4660-0` gets mapped into memory
     - Excerpt length (bitwise NOT) gets read (`memory_order_acquire`) from `data_offset-4`)
     - The excerpt is ready to be used
-
