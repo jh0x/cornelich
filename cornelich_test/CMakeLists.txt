@@ -72,6 +72,9 @@ TARGET_LINK_LIBRARIES(vanilla_chronicle_test cornelich ${CMAKE_THREAD_LIBS_INIT}
 ADD_EXECUTABLE(vanilla_chronicle_long_test ${VANILLA_CHRONICLE_LONG_SRC})
 TARGET_LINK_LIBRARIES(vanilla_chronicle_long_test cornelich ${CMAKE_THREAD_LIBS_INIT} ${Boost_LIBRARIES})
 
+ADD_EXECUTABLE(cornelich_read_write_cycle main.cpp cornelich_read_write_cycle.cpp)
+TARGET_LINK_LIBRARIES(cornelich_read_write_cycle cornelich ${CMAKE_THREAD_LIBS_INIT} ${Boost_LIBRARIES})
+
 
 # Register the test with CTest
 ADD_TEST("util_test" util_test)
