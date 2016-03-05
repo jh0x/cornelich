@@ -5,6 +5,7 @@ INCLUDE_DIRECTORIES(SYSTEM
     ${Boost_INCLUDE_DIRS})
 INCLUDE_DIRECTORIES(
     ${PROJECT_SOURCE_DIR}
+    ${CMAKE_CURRENT_BINARY_DIR}
     .
 )
 
@@ -63,8 +64,6 @@ ADD_EXECUTABLE(reading_java_chronicle ${READING_JAVA_CHRONICLE_SRC})
 # We need to unpack the test data...
 untar(reading_java_chronicle ${CMAKE_CURRENT_SOURCE_DIR}/SampleVanillaChronicle.tar.bz2 ${CMAKE_CURRENT_BINARY_DIR}/test_data)
 TARGET_LINK_LIBRARIES(reading_java_chronicle cornelich ${CMAKE_THREAD_LIBS_INIT} ${Boost_LIBRARIES})
-# And define the location of the test data
-TARGET_COMPILE_DEFINITIONS(reading_java_chronicle PRIVATE _CORNELICH_TEST_ABSOLUTE_PATH="${CMAKE_CURRENT_BINARY_DIR}/test_data")
 
 ADD_EXECUTABLE(vanilla_chronicle_test ${VANILLA_CHRONICLE_SRC})
 TARGET_LINK_LIBRARIES(vanilla_chronicle_test cornelich ${CMAKE_THREAD_LIBS_INIT} ${Boost_LIBRARIES})
@@ -82,3 +81,6 @@ ADD_TEST("chronicle_tools_test" chronicle_tools_test)
 ADD_TEST("vanilla_chronicle_test" vanilla_chronicle_test)
 ADD_TEST("reading_java_chronicle" reading_java_chronicle)
 ADD_TEST("vanilla_chronicle_long_test" vanilla_chronicle_long_test)
+
+CONFIGURE_FILE(test_data.h.in test_data.h)
+

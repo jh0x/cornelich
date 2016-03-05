@@ -1,0 +1,4 @@
+#pragma once
+
+#define _CORNELICH_TEST_ABSOLUTE_PATH "${CMAKE_CURRENT_BINARY_DIR}/test_data"
+

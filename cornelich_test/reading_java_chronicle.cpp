@@ -16,15 +16,13 @@ limitations under the License.
 */
 
 
+#include "test_data.h"
+
 #include <cornelich/vanilla_chronicle_settings.h>
 #include <cornelich/vanilla_chronicle.h>
 
 #include <map>
 #include <catch.hpp>
-
-#ifndef _CORNELICH_TEST_ABSOLUTE_PATH
-#define _CORNELICH_TEST_ABSOLUTE_PATH
-#endif
 
 using namespace cornelich;
 
